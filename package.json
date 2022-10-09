@@ -1,11 +1,12 @@
 {
-  "name": "hacker-news-clone-using-redis",
+  "name": "redis-hacker-news-demo-react-mongo",
   "version": "0.10.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon index.js",
     "build": "next build",
+    "deploy": "git add . && git commit -m Build && git push",
     "start": "NODE_ENV=production node index.js",
     "seed": "node ./backend/scripts/seed.js"
   },
