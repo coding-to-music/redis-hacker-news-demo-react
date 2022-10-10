@@ -745,3 +745,33 @@ npm run dev
 npm run build
 npm start
 ```
+
+```
+event - compiled successfully
+node_redis: WARNING: You passed "https" as protocol instead of the "redis" protocol!
+node_redis: WARNING: You passed "https" as protocol instead of the "redis" protocol!
+REDIS Creating index of user - [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+REDIS REDIS RUN -  FT.INFO idx:user
+REDIS Creating index of item - [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+REDIS REDIS RUN -  FT.INFO idx:item
+REDIS Creating index of user-vote - [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+REDIS REDIS RUN -  FT.INFO idx:user-vote
+REDIS Creating index of user-favorite - [object Object],[object Object],[object Object],[object Object],[object Object]
+REDIS REDIS RUN -  FT.INFO idx:user-favorite
+REDIS Creating index of user-hidden - [object Object],[object Object],[object Object],[object Object],[object Object]
+REDIS REDIS RUN -  FT.INFO idx:user-hidden
+REDIS Creating index of comment - [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+REDIS REDIS RUN -  FT.INFO idx:comment
+REDIS Creating index of moderation-log - [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+REDIS REDIS RUN -  FT.INFO idx:moderation-log
+Server ready on http://localhost:5000
+REDIS REDIS RESULT -  {"index_name":"idx:user","index_options":{},"index_definition":{"key_type":"HASH","prefixes":{},"default_score":"1"},"attributes":{"identifier,username,attribute,username,type,TEXT,WEIGHT,1,SORTABLE":{"identifier":"email","attribute":"email","type":"TEXT","WEIGHT":"1"},"identifier,created,attribute,created,type,NUMERIC,SORTABLE":{"identifier":"karma","attribute":"karma","type":"NUMERIC"},"identifier,about,attribute,about,type,TEXT,WEIGHT,1":{"identifier":"showDead","attribute":"showDead","type":"TEXT","WEIGHT":"1"},"identifier,isModerator,attribute,isModerator,type,TEXT,WEIGHT,1":{"identifier":"shadowBanned","attribute":"shadowBanned","type":"TEXT","WEIGHT":"1"},"identifier,banned,attribute,banned,type,TEXT,WEIGHT,1":{"identifier":"_id","attribute":"_id","type":"TEXT","WEIGHT":"1"}},"num_docs":"7","max_doc_id":"8","num_terms":"19","num_records":"50","inverted_sz_mb":"0.00031566619873046875","vector_index_sz_mb":"0","total_inverted_index_blocks":"580","offset_vectors_sz_mb":"7.82012939453125e-05","doc_table_size_mb":"0.00048065185546875","sortable_values_size_mb":"0.0008716583251953125","key_table_size_mb":"0.00022125244140625","records_per_doc_avg":"7.1428570747375488","bytes_per_record_avg":"6.619999885559082","offsets_per_term_avg":"1.6399999856948853","offset_bits_per_record_avg":"8","hash_indexing_failures":"0","indexing":"0","percent_indexed":"1","gc_stats":{"bytes_collected":"0","total_ms_run":"0","total_cycles":"0","average_cycle_time_ms":"-nan","last_run_time_ms":"0","gc_numeric_trees_missed":"0","gc_blocks_denied":"0"},"cursor_stats":{"global_idle":0,"global_total":0,"index_capacity":128,"index_total":0}}
+/mnt/volume_nyc1_01/redis-hacker-news-demo-react/backend/libs/redis-db/model.js:36
+    const existingIndexFields = ftInfo.fields.map(f => f.key)
+                                              ^
+
+TypeError: Cannot read properties of undefined (reading 'map')
+    at initializeIndex (/mnt/volume_nyc1_01/redis-hacker-news-demo-react/backend/libs/redis-db/model.js:36:47)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[nodemon] app crashed - waiting for file changes before starting...
+```

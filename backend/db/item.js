@@ -1,5 +1,10 @@
-const { RedisDb, RedisSchema, RedisDbTypes, RedisModel } = require('../libs/redis-db')
-const { rediSearchDb, redisJsonDb } = require('../db')
+const {
+  RedisDb,
+  RedisSchema,
+  RedisDbTypes,
+  RedisModel,
+} = require("../libs/redis-db");
+const { rediSearchDb, redisJsonDb } = require("../db");
 
 const ItemSchema = new RedisSchema({
   id: {
@@ -33,6 +38,7 @@ const ItemSchema = new RedisSchema({
   },
   url: {
     type: RedisDbTypes.STRING,
+    // required: false,
 
     indexed: true,
     sortable: true,
@@ -79,9 +85,10 @@ const ItemSchema = new RedisSchema({
     default: false,
 
     indexed: true,
-  }
-})
+  },
+});
 
-module.exports = RedisModel('item', ItemSchema, {
-  rediSearchDb, redisJsonDb,
-})
+module.exports = RedisModel("item", ItemSchema, {
+  rediSearchDb,
+  redisJsonDb,
+});
