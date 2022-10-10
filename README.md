@@ -6,6 +6,8 @@ https://github.com/coding-to-music/redis-hacker-news-demo-react
 
 From / By https://github.com/ajeetraina/redis-hacker-news-demo
 
+https://developer.redis.com/howtos/hackernews
+
 ## Environment variables:
 
 ```java
@@ -30,6 +32,18 @@ git push -u origin main
 
 - Frontend - _React_, _NextJS_
 - Backend - _NodeJS_, _ExpressJS_, _Redis_(RediSearch + RedisJSON)
+
+## Create Redis Enterprise Cloud database
+
+https://developer.redis.com/howtos/hackernews/
+
+Redis is an open source, in-memory, key-value data store most commonly used as a primary database, cache, message broker, and queue. Redis is popular among the developers as it delivers sub-millisecond response times, enabling fast and powerful real-time applications in industries such as gaming, fintech, ad-tech, social media, healthcare, and IoT.
+
+Redis Cloud is a fully-managed cloud service for hosting and running your Redis dataset in a highly-available and scalable manner, with predictable and stable top performance. Redis Enterprise cloud allows you to run Redis server over the Cloud and access instance via multiple ways like RedisInsight, Redis command line as well as client tools. You can quickly and easily get your apps up and running with Redis Cloud through its Redis Heroku addons , just tell us how much memory you need and get started instantly with your first Redis database. You can then add more Redis databases (each running in a dedicated process, in a non-blocking manner) and increase or decrease the memory size of your plan without affecting your existing data.
+
+Follow this link to create a Redis Enterprise Cloud account with 2 databases - one with the RedisJSON module and other with RediSearch (full-text search and secondary indexing) module enabled.
+
+Save the database endpoint URL and password for our future reference
 
 ## Database Schema
 
@@ -679,6 +693,38 @@ Using [API](https://github.com/HackerNews/API), it pulls the latest hackernews d
 
 ```sh
 node ./backend/scripts/seed.js
+```
+
+Output (errors)
+
+```
+REDIS REDIS RUN -  FT.SEARCH idx:user  (@username:"throwaway124592") NOCONTENT LIMIT 0 1 SORTBY _id DESC
+REDIS REDIS RESULT -  [0]
+REDIS REDIS RUN -  GET user:id-indicator
+REDIS REDIS RESULT -  "7"
+REDIS REDIS RUN -  INCR user:id-indicator
+REDIS REDIS RESULT -  8
+REDIS REDIS RUN -  HSET user:7 username throwaway124592 email  created 1664467726 karma 594 about  showDead false isModerator false shadowBanned false banned false _id 7
+REDIS REDIS RESULT -  10
+REDIS REDIS RUN -  JSON.SET user:7 . [object Object]
+REDIS REDIS RUN REFORMAT -  JSON.SET user:7 . '{"username":"throwaway124592","password":"$2a$10$U66EmGlvwLhFISPsaPMK8Or6PIgloF0tIV9Lmf54LxL4hy5stjdVS","email":"","created":1664467726,"karma":594,"about":"","showDead":false,"isModerator":false,"shadowBanned":false,"banned":false,"_id":7}'
+REDIS REDIS RESULT -  null
+REDIS REDIS RUN -  JSON.GET user:7 .
+REDIS REDIS RESULT -  {"username":"throwaway124592","password":"$2a$10$U66EmGlvwLhFISPsaPMK8Or6PIgloF0tIV9Lmf54LxL4hy5stjdVS","email":"","created":1664467726,"karma":594,"about":"","showDead":false,"isModerator":false,"shadowBanned":false,"banned":false,"_id":7}
+node:internal/errors:464
+    ErrorCaptureStackTrace(err);
+    ^
+
+TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Received undefined
+    at new NodeError (node:internal/errors:371:5)
+    at validateString (node:internal/validators:120:11)
+    at Url.parse (node:url:169:3)
+    at Object.urlParse [as parse] (node:url:156:13)
+    at Object.getDomainFromUrl (/mnt/volume_nyc1_01/redis-hacker-news-demo-react/backend/routes/utils.js:16:26)
+    at runSeed (/mnt/volume_nyc1_01/redis-hacker-news-demo-react/backend/scripts/runSeed.js:107:21)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
 ```
 
 ## Running Locally
